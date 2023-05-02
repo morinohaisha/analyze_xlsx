@@ -5,9 +5,6 @@ use zip::{read::ZipFile, ZipArchive};
 impl XlsxReader {
     pub fn new(template: &str) -> anyhow::Result<XlsxReader> {
         let path = Path::new(template);
-        if !path.exists() {
-            anyhow::anyhow!("template file does not exist");
-        }
         let zipfile = File::open(path)?;
         let reader = ZipArchive::new(zipfile)?;
         Ok(XlsxReader { reader })
